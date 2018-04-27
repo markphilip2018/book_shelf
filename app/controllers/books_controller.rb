@@ -64,7 +64,10 @@ class BooksController < ApplicationController
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
-    @book.destroy
+    #@book.destroy
+    #@book_library = BookLibraryRelation.new(:book_id=>@book_search.id,:library_id=> @book_search.library_id)
+    @book_search = BookLibraryRelation.where(book_id: @book.id).take
+    @book_search.destroy
     respond_to do |format|
       format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
       format.json { head :no_content }
