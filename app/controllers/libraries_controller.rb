@@ -1,6 +1,6 @@
 class LibrariesController < ApplicationController
   before_action :set_library, only: [:show, :edit, :update, :destroy]
-  before_action :check_admin
+  before_action :check_staff
 
 
   # GET /libraries
@@ -75,7 +75,7 @@ class LibrariesController < ApplicationController
     end
 
     private
-    def check_admin
+    def check_staff
       if !staff_member_signed_in?
         redirect_to new_staff_member_session_path
       end

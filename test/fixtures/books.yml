@@ -3,7 +3,7 @@
 one:
   library: one
   category: one
-  ISBN: 1
+  ISBN: 123124
   publication_year: 1
   name: MyString
   author: MyString
@@ -11,7 +11,7 @@ one:
 two:
   library: two
   category: two
-  ISBN: 1
+  ISBN: 1111
   publication_year: 1
   name: MyString
   author: MyString

@@ -17,12 +17,18 @@
               <li><%= link_to 'Submit Admin',  new_admin_path %></li>
               <li><%= link_to 'Sign out', destroy_staff_member_session_path, :method => :delete %></li>
             </ul>
-          <% else -%>
+    <%elsif admin_logged_in? %>
+      <ul >
+        <li><%= link_to 'Submit Book', new_book_path %></li>
+        <li><%= link_to 'Sign out', logout_path, :method => :delete %></li>
+      </ul>
+
+    <% else -%>
             <ul >
-              <li><%= link_to 'Sign up', new_staff_member_registration_path %></li>
-              <li><%= link_to 'Sign in', new_staff_member_session_path %></li>
+              <li><%= link_to 'Sign in as staff', new_staff_member_session_path %></li>
+              <li><%= link_to 'Sign in as admin', login_path %></li>
             </ul>
-          <% end -%>
+    <% end -%>
     <%= yield %>
   </body>
 </html>

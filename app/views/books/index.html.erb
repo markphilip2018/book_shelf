@@ -18,8 +18,8 @@
   <tbody>
     <% @books.each do |book| %>
       <tr>
-        <td><%= book.library %></td>
-        <td><%= book.category %></td>
+        <td><%= book.library.name %></td>
+        <td><%= book.category.name %></td>
         <td><%= book.ISBN %></td>
         <td><%= book.publication_year %></td>
         <td><%= book.name %></td>
