@@ -3,11 +3,11 @@
 one:
   library: one
   name: MyString
-  email: MyString
+  email: MyString@koko.com
   password: MyString
 
 two:
   library: two
   name: MyString
-  email: MyString
+  email: MyString@ko.vco
   password: MyString

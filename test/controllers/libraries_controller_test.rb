@@ -5,44 +5,45 @@ class LibrariesControllerTest < ActionDispatch::IntegrationTest
     @library = libraries(:one)
   end
 
-  test "should get index" do
+  test "shouldn't get index" do
     get libraries_url
-    assert_response :success
+    assert_redirected_to  new_staff_member_session_url
   end
 
-  test "should get new" do
+  test "shouldn't get new" do
     get new_library_url
-    assert_response :success
+    assert_redirected_to  new_staff_member_session_url
   end
 
-  test "should create library" do
-    assert_difference('Library.count') do
+  test "shouldn't create library" do
+    assert_no_difference('Library.count') do
       post libraries_url, params: { library: { location: @library.location, name: @library.name, phone: @library.phone } }
     end
 
-    assert_redirected_to library_url(Library.last)
+    assert_redirected_to new_staff_member_session_url
   end
 
-  test "should show library" do
+  test "shouldn't show library" do
     get library_url(@library)
-    assert_response :success
+    assert_redirected_to new_staff_member_session_url
   end
 
-  test "should get edit" do
+  test "shouldn't get edit" do
     get edit_library_url(@library)
-    assert_response :success
+    assert_redirected_to new_staff_member_session_url
   end
 
-  test "should update library" do
+  test "shouldn't update library" do
     patch library_url(@library), params: { library: { location: @library.location, name: @library.name, phone: @library.phone } }
-    assert_redirected_to library_url(@library)
+    assert_redirected_to new_staff_member_session_url
   end
 
-  test "should destroy library" do
-    assert_difference('Library.count', -1) do
+  test "shouldn't destroy library" do
+    assert_no_difference('Library.count') do
       delete library_url(@library)
     end
 
-    assert_redirected_to libraries_url
+    assert_redirected_to new_staff_member_session_url
   end
+
 end

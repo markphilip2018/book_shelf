@@ -6,6 +6,6 @@ one:
   phone: MyString
 
 two:
-  name: MyString
-  location: MyString
-  phone: MyString
+  name: MyString2
+  location: MyString2
+  phone: MyString2

@@ -84,4 +84,10 @@ class BooksController < ApplicationController
     def book_params
       params.require(:book).permit(:library_id, :category_id, :ISBN, :publication_year, :name, :author)
     end
+
+    def check_admin
+      if !admin_logged_in?
+        redirect_to login_path
+      end
+    end
 end
