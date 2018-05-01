@@ -28,7 +28,7 @@ class BooksController < ApplicationController
     respond_to do |format|
       @book_search = Book.where(ISBN: @book.ISBN).take
       if(@book_search != nil)
-        @book_library = BookLibraryRelation.new(:book_id=>@book_search.id,:library_id=> @book_search.library_id)
+        @book_library = BookLibraryRelation.new(:book_id=>@book_search.id,:library_id=> @book.library_id)
         @book_library.save
         format.html { redirect_to @book_search, notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book_search }
