@@ -20,6 +20,7 @@
     <%elsif admin_logged_in? %>
       <ul >
         <li><%= link_to 'Submit Book', new_book_path %></li>
+        <li><%= link_to 'Submit Category',  new_category_path %></li>
         <li><%= link_to 'Sign out', logout_path, :method => :delete %></li>
       </ul>
 
@@ -30,5 +31,7 @@
             </ul>
     <% end -%>
     <%= yield %>
+
+
   </body>
 </html>

@@ -1,13 +1,16 @@
 <p id="notice"><%= notice %></p>
+<% @book_library = BookLibraryRelation.where(book_id: @book.id) %>
+<% @book_library.each do |library| %>
 
 <p>
   <strong>Library:</strong>
-  <%= @book.library %>
+  <%= Library.where(id: library.library_id).take.name%>
 </p>
+<% end %>
 
 <p>
   <strong>Category:</strong>
-  <%= @book.category %>
+  <%= @book.category.name %>
 </p>
 
 <p>
@@ -29,6 +32,8 @@
   <strong>Author:</strong>
   <%= @book.author %>
 </p>
-
+ <%if admin_logged_in? %>
+<%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %>
 <%= link_to 'Edit', edit_book_path(@book) %> |
+<%end%>
 <%= link_to 'Back', books_path %>

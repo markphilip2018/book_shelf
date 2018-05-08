@@ -14,9 +14,9 @@ ActiveRecord::Schema.define(version: 2018_04_26_103956) do
 
   create_table "admins", force: :cascade do |t|
     t.integer "library_id"
-    t.string "name"
-    t.string "email"
-    t.string "password"
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "password", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["library_id"], name: "index_admins_on_library_id"
@@ -32,28 +32,26 @@ ActiveRecord::Schema.define(version: 2018_04_26_103956) do
   end
 
   create_table "books", force: :cascade do |t|
-    t.integer "library_id"
     t.integer "category_id"
-    t.integer "ISBN"
-    t.integer "publication_year"
-    t.string "name"
-    t.string "author"
+    t.integer "ISBN", null: false
+    t.integer "publication_year", null: false
+    t.string "name", null: false
+    t.string "author", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_books_on_category_id"
-    t.index ["library_id"], name: "index_books_on_library_id"
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "libraries", force: :cascade do |t|
-    t.string "name"
-    t.string "location"
-    t.string "phone"
+    t.string "name", null: false
+    t.string "location", null: false
+    t.string "phone", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
