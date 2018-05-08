@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_admin, only:[:create,:edit, :update, :destroy]
   # GET /books
   # GET /books.json
   def index
@@ -25,18 +25,26 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = Book.new(book_params)
+
     respond_to do |format|
       @book_search = Book.where(ISBN: @book.ISBN).take
+
       if(@book_search != nil)
-        @book_library = BookLibraryRelation.new(:book_id=>@book_search.id,:library_id=> @book.library_id)
-        @book_library.save
-        format.html { redirect_to @book_search, notice: 'Book was successfully created.' }
+        book_library_search = BookLibraryRelation.where(book_id: @book_search.id , library_id: current_admin.library_id).take
+        msg ='Book is already in library'
+        if(book_library_search == nil)
+          @book_library = BookLibraryRelation.new(:book_id=>@book_search.id,:library_id=> current_admin.library_id)
+          @book_library.save
+          msg = 'Book was successfully created'
+        end
+        format.html { redirect_to @book_search, notice: msg }
         format.json { render :show, status: :created, location: @book_search }
       else
 
         if @book.save
-          @book_library = BookLibraryRelation.new(:book_id=>@book.id,:library_id=> @book.library_id)
+          @book_library = BookLibraryRelation.new(:book_id=>@book.id,:library_id=> current_admin.library_id)
           @book_library.save
+
           format.html { redirect_to @book, notice: 'Book was successfully created.' }
           format.json { render :show, status: :created, location: @book }
         else
@@ -82,7 +90,7 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:library_id, :category_id, :ISBN, :publication_year, :name, :author)
+      params.require(:book).permit(:category_id, :ISBN, :publication_year, :name, :author)
     end
 
     def check_admin
