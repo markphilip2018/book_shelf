@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
 
   def destroy
   	admin_log_out
-  	redirect_to books_path
+  	redirect_to login_path
   end
 
 

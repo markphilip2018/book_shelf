@@ -4,7 +4,9 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
+
+   @books = Book.all
+
   end
 
   # GET /books/1
@@ -15,6 +17,7 @@ class BooksController < ApplicationController
   # GET /books/new
   def new
     @book = Book.new
+    @categories = Category.pluck(:name)
   end
 
   # GET /books/1/edit

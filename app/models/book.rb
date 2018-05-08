@@ -5,4 +5,5 @@ class Book < ApplicationRecord
   validates :ISBN , :uniqueness => true , presence: true
   validates :name , presence: true
 
+
 end
