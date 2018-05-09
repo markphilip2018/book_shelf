@@ -8,29 +8,37 @@
 </p>
 <% end %>
 
+<%book = GoogleBooks.search('isbn:'+@book.ISBN.to_s)%>
+<% first_book = book.first%>
+
+
+<p>
+  <strong>ISBN:</strong>
+  <%= @book.ISBN %>
+</p>
+
 <p>
   <strong>Category:</strong>
   <%= @book.category.name %>
 </p>
 
 <p>
-  <strong>Isbn:</strong>
-  <%= @book.ISBN %>
+  <strong>Publication Date:</strong>
+  <%= first_book.published_date %>
 </p>
 
 <p>
-  <strong>Publication year:</strong>
-  <%= @book.publication_year %>
+  <strong>Title:</strong>
+  <%= first_book.title %>
 </p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @book.name %>
+  <strong>Author(s):</strong>
+  <%= first_book.authors %>
 </p>
-
 <p>
-  <strong>Author:</strong>
-  <%= @book.author %>
+  <strong>Description:</strong>
+  <%= first_book.description %>
 </p>
  <%if admin_logged_in? %>
 <%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %>
