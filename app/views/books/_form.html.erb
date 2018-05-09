@@ -12,9 +12,10 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :category_id %>
-    <%= form.text_field :category_id %>
-  </div>
+      <%= form.label :category_id %><br />
+      <%= form.select :category_id  ,options_for_select(@category),:include_blank => true %>
+   </div>
+
 
   <div class="field">
     <%= form.label :ISBN %>

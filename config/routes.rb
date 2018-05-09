@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
   devise_for :staff_members
   resources :books
+  resources :searches
   resources :categories
   resources :admins
   resources :libraries

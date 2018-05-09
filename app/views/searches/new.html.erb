@@ -1,0 +1,33 @@
+<h1>Custom Search</h1>
+
+<%= form_for @search do |s| %>
+
+    <div class="field">
+        <%= s.label :name %><br />
+        <%= s.text_field :name %>
+    </div>
+
+    <div class="field">
+        <%= s.label :isbn %><br />
+        <%= s.text_field :isbn %>
+    </div>
+
+    <div class="field">
+        <%= s.label :author %><br />
+        <%= s.text_field :author %>
+    </div>
+
+    <div class="field">
+        <%= s.label :publication_year %><br />
+        <%= s.text_field :publication_year %>
+    </div>
+
+    <div class="field">
+        <%= s.label :category %><br />
+        <%= s.select :category ,options_for_select(@categories),:include_blank => true %>
+    </div>
+    <div class="actions"><%= s.submit "Search "%></div>
+
+<% end %>
+
+<p><% link_to 'back', books_path %></p>

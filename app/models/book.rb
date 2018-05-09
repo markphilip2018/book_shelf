@@ -5,4 +5,12 @@ class Book < ApplicationRecord
   validates :ISBN , :uniqueness => true , presence: true
   validates :name , presence: true
 
+
+  def books
+
+        puts "***************************///////////////////////////"
+        puts category
+        @category_search = Category.where(name: category).take
+ end
+
 end
