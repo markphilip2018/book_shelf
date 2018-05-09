@@ -6,4 +6,11 @@ class Book < ApplicationRecord
   validates :name , presence: true
 
 
+  def books
+
+        puts "***************************///////////////////////////"
+        puts category
+        @category_search = Category.where(name: category).take
+ end
+
 end
