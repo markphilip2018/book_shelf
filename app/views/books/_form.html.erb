@@ -11,31 +11,13 @@
     </div>
   <% end %>
 
-  <div class="field">
-      <%= form.label :category_id %><br />
-      <%= form.select :category_id  ,options_for_select(@category),:include_blank => true %>
-   </div>
-
 
   <div class="field">
     <%= form.label :ISBN %>
     <%= form.number_field :ISBN %>
   </div>
 
-  <div class="field">
-    <%= form.label :publication_year %>
-    <%= form.number_field :publication_year %>
-  </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :author %>
-    <%= form.text_field :author %>
-  </div>
 
   <div class="actions">
     <%= form.submit %>

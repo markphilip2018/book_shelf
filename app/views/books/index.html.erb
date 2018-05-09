@@ -21,8 +21,13 @@
 
           <% books = GoogleBooks.search('isbn:'+book.ISBN.to_s)%>
           <% first_book = books.first %>
-        <td><img src = <%=first_book.image_link(:zoom => 1) %> ></td>
-        <td><%= link_to 'Show', book %></td>
+
+        <td >
+          <%= link_to book do %>
+           <img src = <%= first_book.image_link(:zoom => 1) %> >
+           <%end%>
+         </td>
+        <td></td>
 
       </tr>
     <% end %>
