@@ -17,7 +17,6 @@ class BooksController < ApplicationController
   # GET /books/new
   def new
     @book = Book.new
-    @category = Category.pluck(:id)
   end
 
   # GET /books/1/edit
@@ -27,8 +26,27 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    @category = Category.pluck(:id)
+
     @book = Book.new(book_params)
+    book = GoogleBooks.search('isbn:'+@book.ISBN.to_s)
+    first_book = book.first
+    @book.name = first_book.title
+    @book.publication_year = first_book.published_date
+    @book.author= first_book.authors_array[0]
+
+    category_name = first_book.categories.split(",")[0]
+    category = Category.where(name: category_name ).take
+
+    if(category == nil)
+      category = Category.new(:name=>category_name)
+      category.save
+    end
+
+    @book.category_id = category.id
+
+
+
+
 
     respond_to do |format|
       @book_search = Book.where(ISBN: @book.ISBN).take

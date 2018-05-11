@@ -1,21 +1,25 @@
+<body class = "body">
 <h1>Search Result</h1>
 <p><%= link_to 'back' , new_search_path %></p>
 <% if @search.search_books.empty? %>
     <p>NO RECORDS</p>
 
 <% else %>
-
+<div class="scrolling-wrapper">
     <% @search.search_books.each do |c|%>
     <br>
 
     <div class="div">
         <h1><%= c.name %></h1>
+        <img src = <%=GoogleBooks.search('isbn:'+c.ISBN.to_s).first.image_link(:zoom => 1) %> >
         <p>author: <%= c.author%></p>
         <p>publication_year: <%= c.publication_year%></p>
         <p>isbn: <%= c.ISBN%></p>
         <p>category: <%= c.category.name %></p>
 
     </div>
+  </div>
 
     <% end %>
 <% end %>
+</body>
