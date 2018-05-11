@@ -1,38 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Books</h1>
+
+<h1 align="center">Online Book Shelf</h1>
+
 <%= link_to "search" , new_search_path %>
-<table>
-  <thead>
-    <tr>
-      <th>Cover</th>
-      <th>info</th>
 
-      <th colspan="20"></th>
-    </tr>
-  </thead>
+<div style="border-left:0px solid #000;height:100px"></div>
 
-<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<body class = "body">
+<div class="scrolling-wrapper">
+  <% @books.each do |book| %>
+    <% books = GoogleBooks.search('isbn:'+book.ISBN.to_s)%>
+    <% first_book = books.first %>
 
-  <tbody>
-
-    <% @books.each do |book| %>
-      <tr>
-
-          <% books = GoogleBooks.search('isbn:'+book.ISBN.to_s)%>
-          <% first_book = books.first %>
-
-        <td >
-          <%= link_to book do %>
-           <img src = <%= first_book.image_link(:zoom => 1) %> >
-           <%end%>
-         </td>
-        <td></td>
-
-      </tr>
+    <div class="card">
+      <%= link_to book do %>
+      <img src = <%= first_book.image_link(:zoom => 1) %> >
+      <%end%>
+    </div>
     <% end %>
-  </tbody>
-</table>
 
+</div>
 
-<br>
+</body>
